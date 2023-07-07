@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+typedef long long ll;
+const int yayaya = 5e5+5;
+int fre[yayaya];
+//1e6 means 10 to the power 6
+ 
+int main()
+{
+  ll l,r,n; cin>>n;
+  ll arr[n],prefix[n+1],preHH[n+1]; prefix[0]=preHH[0]=0;
+  for(int i=0;i<n;i++){
+   cin>> arr[i];  
+   if(!i) prefix[i+1]=arr[i];
+   else prefix[i+1]= arr[i]+prefix[i+1-1];  
+   }  
+   sort(arr,arr+n);
+   for(int i=0;i<n;i++){
+   if(!i) preHH[i+1]=arr[i];
+   else preHH[i+1]= arr[i]+preHH[i+1-1];  
+   }
+   ll test,flag; cin >>test;  
+   while(test--){
+    cin>> flag >> l>>r;
+    if (flag==1) cout << prefix[r]-prefix[l-1]<<endl;
+    else cout << preHH[r]-preHH[l-1]<<endl;
+   }
+  return 0;
+}
